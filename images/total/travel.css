@@ -1,0 +1,186 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    background: #00c7c7;
+}
+
+
+.main{
+    width: 100%;
+    min-height: 100vh;
+    padding: 30px 80px;
+}
+
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links{
+    display: flex;
+    gap: 40px;
+    list-style: none;
+}
+
+.nav-links a{
+    text-decoration: none;
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.social-icons{
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a{
+    width: 35px;
+    height: 35px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+}
+
+
+.content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 60px;
+}
+
+.left{
+    width: 45%;
+    display: flex;
+    justify-content: center;
+}
+
+.left img{
+    width: 350px;
+}
+
+.right{
+    width: 40%;
+    color: white;
+}
+
+.right h1{
+    font-size: 85px;
+    line-height: 1;
+    font-weight: bold;
+}
+
+.right p{
+    margin-top: 15px;
+    font-size: 22px;
+}
+
+.booking-box{
+    margin-top: 30px;
+    background: rgba(255,255,255,0.15);
+    padding: 30px;
+}
+
+.booking-box form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.booking-box label{
+    color: white;
+    font-size: 13px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.booking-box input{
+    width: 100%;
+    padding: 14px;
+    border: 2px solid rgba(255,255,255,0.4);
+    background: transparent;
+    color: white;
+    outline: none;
+}
+
+.booking-box input::placeholder{
+    color: rgba(255,255,255,0.8);
+}
+
+.date-box{
+    display: flex;
+    gap: 20px;
+}
+
+.date-box div{
+    width: 50%;
+}
+
+.people-box{
+    display: flex;
+    gap: 20px;
+}
+
+.people-box div{
+    width: 50%;
+}
+
+.booking-box button{
+    padding: 15px;
+    border: none;
+    background: #ffbf00;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+@media(max-width: 900px){
+
+    .content{
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    .left,
+    .right{
+        width: 100%;
+    }
+
+    .right h1{
+        font-size: 60px;
+    }
+
+    .navbar{
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .nav-links{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .date-box,
+    .people-box{
+        flex-direction: column;
+    }
+
+    .date-box div,
+    .people-box div{
+        width: 100%;
+    }
+}

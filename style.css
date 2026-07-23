@@ -1,0 +1,953 @@
+/* ============================================================
+   TOKENS
+   Ink   #0a0c16 / #10132200 panel #12162a
+   Gold  #c9a24b (core) #e8cf88 (light) #7a5f22 (deep)
+   Wine  #5c1a2b (secondary accent, used sparingly)
+   Ivory #f2ead9 (text) / Mist #a6a4b8 (muted text)
+   ============================================================ */
+:root {
+    --ink: #0a0c16;
+    --ink-2: #10132a;
+    --panel: #13172e;
+    --gold: #c9a24b;
+    --gold-light: #ecd48c;
+    --gold-deep: #8a6a24;
+    --wine: #6a1f33;
+    --ivory: #f3ecdb;
+    --mist: #a7a4bb;
+    --hairline: rgba(201, 162, 75, 0.28);
+    --shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+    --serif: 'Cormorant Garamond', serif;
+    --engraved: 'Cinzel', serif;
+    --sans: 'Jost', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--sans);
+    scroll-behavior: smooth;
+}
+
+html { scroll-padding-top: 90px; }
+
+body {
+    background: var(--ink);
+    color: var(--ivory);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Subtle film-grain / texture overlay for a tactile, premium finish */
+.grain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2000;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+}
+
+::selection { background: var(--gold); color: var(--ink); }
+
+a { color: inherit; }
+img { display: block; max-width: 100%; }
+
+/* Eyebrow labels — engraved, letter-spaced, gold hairline flanks */
+.eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--engraved);
+    font-size: 0.72rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+}
+
+.eyebrow.center { justify-content: center; margin-bottom: 10px; }
+
+.eyebrow .line {
+    width: 34px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold));
+}
+
+.eyebrow.center .line:last-child {
+    background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+/* Faceted gem — a small rotating diamond that flickers between two gold
+   tones as it turns in 3D, used as a punctuation mark above centered headings */
+.gem {
+    display: block;
+    width: 12px;
+    height: 12px;
+    margin: 0 auto 18px;
+    perspective: 200px;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.gem::before,
+.gem::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: rotate(45deg);
+    backface-visibility: hidden;
+}
+
+.gem::before {
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    animation: gem-spin 5s linear infinite;
+}
+
+.gem::after {
+    background: linear-gradient(135deg, var(--gold-deep), var(--wine));
+    animation: gem-spin 5s linear infinite;
+    animation-delay: -2.5s;
+}
+
+@keyframes gem-spin {
+    0%   { transform: rotate(45deg) rotateY(0deg); }
+    100% { transform: rotate(45deg) rotateY(360deg); }
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 24px 8%;
+    background: rgba(10, 12, 22, 0.55);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid transparent;
+    z-index: 1000;
+    transition: 0.35s ease;
+}
+
+header.sticky {
+    padding: 15px 8%;
+    background: rgba(10, 12, 22, 0.85);
+    border-bottom: 1px solid var(--hairline);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.logo-badge {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--engraved);
+    font-size: 1.1rem;
+    color: var(--gold-light);
+    position: relative;
+}
+
+.logo-badge::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border: 1px solid var(--hairline);
+    border-radius: 50%;
+}
+
+.logo-badge.small {
+    display: inline-flex;
+    margin-bottom: 14px;
+    width: 34px;
+    height: 34px;
+    font-size: 0.95rem;
+}
+
+.logo-word {
+    font-family: var(--engraved);
+    font-size: 1.15rem;
+    letter-spacing: 0.08em;
+    color: var(--ivory);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 42px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--mist);
+    font-size: 0.92rem;
+    letter-spacing: 0.03em;
+    transition: 0.3s;
+    position: relative;
+    padding-bottom: 4px;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--gold-light);
+}
+
+.nav-links a::after {
+    content: '';
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+}
+
+.nav-toggle span {
+    width: 24px;
+    height: 1.5px;
+    background: var(--gold-light);
+    transition: 0.3s;
+}
+
+.nav-toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    background:
+        radial-gradient(ellipse 900px 500px at 78% 18%, rgba(201,162,75,0.10), transparent 60%),
+        linear-gradient(160deg, #0a0c16 0%, #10132a 55%, #0a0c16 100%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 150px 8% 80px;
+    gap: 60px;
+    overflow: hidden;
+}
+
+.hero::before {
+    /* faint diamond lattice — royal damask cue, kept very quiet */
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(45deg, var(--hairline) 1px, transparent 1px),
+        linear-gradient(-45deg, var(--hairline) 1px, transparent 1px);
+    background-size: 64px 64px;
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.hero-glow {
+    position: absolute;
+    top: -10%;
+    right: 8%;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(201,162,75,0.20), transparent 70%);
+    filter: blur(10px);
+    pointer-events: none;
+}
+
+/* Floating gold motes drifting behind the hero content for depth */
+.particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.particles span {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--gold-light);
+    box-shadow: 0 0 6px 1px rgba(236, 212, 140, 0.6);
+    opacity: 0.55;
+    animation: drift 9s ease-in-out infinite;
+}
+
+.particles span:nth-child(1)  { top: 18%; left: 12%; animation-delay: 0s;   }
+.particles span:nth-child(2)  { top: 32%; left: 42%; animation-delay: -1.2s; width: 2px; height: 2px; }
+.particles span:nth-child(3)  { top: 60%; left: 22%; animation-delay: -2.4s; }
+.particles span:nth-child(4)  { top: 75%; left: 55%; animation-delay: -3.6s; width: 2px; height: 2px; }
+.particles span:nth-child(5)  { top: 22%; left: 68%; animation-delay: -4.8s; }
+.particles span:nth-child(6)  { top: 48%; left: 8%;  animation-delay: -6s;  width: 2px; height: 2px; }
+.particles span:nth-child(7)  { top: 85%; left: 30%; animation-delay: -1.8s; }
+.particles span:nth-child(8)  { top: 12%; left: 88%; animation-delay: -3s;  width: 2px; height: 2px; }
+.particles span:nth-child(9)  { top: 65%; left: 76%; animation-delay: -5.2s; }
+.particles span:nth-child(10) { top: 40%; left: 92%; animation-delay: -7s;  width: 2px; height: 2px; }
+
+@keyframes drift {
+    0%, 100% { transform: translateY(0) translateX(0); opacity: 0.35; }
+    50%      { transform: translateY(-26px) translateX(8px); opacity: 0.85; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .particles span { animation: none; }
+}
+
+.hero-text { flex: 1; position: relative; z-index: 2; max-width: 620px; }
+
+.crown {
+    width: 46px;
+    height: auto;
+    margin-bottom: 14px;
+    animation: crown-float 4.5s ease-in-out infinite;
+    filter: drop-shadow(0 6px 10px rgba(201, 162, 75, 0.35));
+}
+
+@keyframes crown-float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%      { transform: translateY(-6px) rotate(-2deg); }
+}
+
+.hero-text h1 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 6rem;
+    line-height: 1;
+    color: var(--ivory);
+    background: linear-gradient(180deg, var(--ivory) 40%, var(--gold-light) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-role {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.7rem;
+    color: var(--gold-light);
+    margin: 10px 0 26px;
+}
+
+.hero-role .dot { color: var(--gold); font-style: normal; }
+
+.description {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--mist);
+    max-width: 500px;
+    margin-bottom: 36px;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.btn {
+    padding: 15px 34px;
+    border-radius: 2px;
+    text-decoration: none;
+    font-family: var(--engraved);
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: 0.35s ease;
+    display: inline-block;
+    position: relative;
+}
+
+.primary {
+    background: linear-gradient(160deg, var(--gold-light), var(--gold) 55%, var(--gold-deep));
+    color: var(--ink);
+    box-shadow:
+        0 10px 26px rgba(201,162,75,0.28),
+        inset 0 1px 0 rgba(255,255,255,0.55),
+        inset 0 -3px 6px rgba(0,0,0,0.25);
+}
+
+.primary:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 18px 34px rgba(201,162,75,0.4),
+        inset 0 1px 0 rgba(255,255,255,0.6),
+        inset 0 -3px 6px rgba(0,0,0,0.25);
+}
+
+.primary:active {
+    transform: translateY(0);
+    box-shadow:
+        0 4px 10px rgba(201,162,75,0.3),
+        inset 0 2px 5px rgba(0,0,0,0.35);
+}
+
+.secondary {
+    border: 1px solid var(--hairline);
+    color: var(--ivory);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.secondary:hover {
+    border-color: var(--gold);
+    background: rgba(201,162,75,0.08);
+    transform: translateY(-3px);
+}
+
+.secondary:active { transform: translateY(0); }
+
+.social-icons {
+    display: flex;
+    gap: 22px;
+}
+
+.social-icons a {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--hairline);
+    border-radius: 50%;
+    color: var(--mist);
+    font-size: 1.05rem;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    color: var(--ink);
+    background: var(--gold-light);
+    border-color: var(--gold-light);
+    transform: translateY(-4px);
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Signature element: an ornamental gold "frame" — hairline ring plus
+   floating corner brackets, echoed for every portrait/photo on the page.
+   .tilt-wrap gives the portrait real depth: it tilts toward the cursor
+   (set via JS custom properties --rx/--ry) while a pair of halo rings
+   orbit around it in true 3D, like a coronation aureole. */
+.tilt-wrap {
+    --rx: 0deg;
+    --ry: 0deg;
+    position: relative;
+    perspective: 900px;
+}
+
+.orbit-ring {
+    position: absolute;
+    inset: -34px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    opacity: 0.3;
+    transform-style: preserve-3d;
+    animation: orbit-spin 16s linear infinite;
+    pointer-events: none;
+}
+
+.orbit-ring--2 {
+    inset: -58px;
+    opacity: 0.16;
+    border-color: var(--gold-light);
+    animation-duration: 24s;
+    animation-direction: reverse;
+}
+
+@keyframes orbit-spin {
+    from { transform: rotateX(72deg) rotateZ(0deg); }
+    to   { transform: rotateX(72deg) rotateZ(360deg); }
+}
+
+.frame {
+    position: relative;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    padding: 10px;
+    transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    transform-style: preserve-3d;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6);
+}
+
+.frame::before {
+    content: '';
+    position: absolute;
+    inset: -18px;
+    border: 1px solid var(--hairline);
+    border-radius: 50%;
+}
+
+.frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    padding: 1px;
+    background: linear-gradient(160deg, var(--gold-light), var(--gold-deep));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+.frame img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.frame--sq { border-radius: 6px; }
+.frame--sq::before { border-radius: 6px; }
+.frame--sq::after { border-radius: 6px; }
+.frame--sq img { border-radius: 6px; }
+
+.tilt-sm {
+    transform-style: preserve-3d;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Viewfinder-style corner brackets that draw the eye and open slightly
+   outward on hover — a small, luxury-catalogue framing detail */
+.corner {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border: 0 solid var(--gold-light);
+    opacity: 0.85;
+    transition: 0.4s ease;
+    pointer-events: none;
+}
+
+.corner--tl { top: -14px; left: -14px; border-top-width: 2px; border-left-width: 2px; }
+.corner--tr { top: -14px; right: -14px; border-top-width: 2px; border-right-width: 2px; }
+.corner--bl { bottom: -14px; left: -14px; border-bottom-width: 2px; border-left-width: 2px; }
+.corner--br { bottom: -14px; right: -14px; border-bottom-width: 2px; border-right-width: 2px; }
+
+.frame:hover .corner--tl, .tilt-sm:hover .corner--tl { transform: translate(-4px, -4px); }
+.frame:hover .corner--tr, .tilt-sm:hover .corner--tr { transform: translate(4px, -4px); }
+.frame:hover .corner--bl, .tilt-sm:hover .corner--bl { transform: translate(-4px, 4px); }
+.frame:hover .corner--br, .tilt-sm:hover .corner--br { transform: translate(4px, 4px); }
+
+@media (prefers-reduced-motion: reduce) {
+    .orbit-ring { animation: none; }
+}
+
+/* ============================================================
+   SECTIONS (shared)
+   ============================================================ */
+section { padding: 130px 8%; position: relative; }
+
+section h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 3rem;
+    color: var(--ivory);
+}
+
+.about h2, .skills h2, .projects h2, .contact h2 { text-align: left; }
+.skills h2, .projects h2, .contact h2 { text-align: center; margin-bottom: 70px; }
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about {
+    display: flex;
+    align-items: center;
+    gap: 90px;
+    background: var(--panel);
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+}
+
+.about-image { flex: 0 0 auto; display: flex; justify-content: center; }
+.about-image .frame { width: 340px; height: 340px; }
+
+.about-text { flex: 1; }
+
+.about-text p:not(.eyebrow) {
+    font-size: 1.15rem;
+    font-weight: 300;
+    color: var(--mist);
+    max-width: 560px;
+    line-height: 1.8;
+}
+
+/* ============================================================
+   SKILLS
+   ============================================================ */
+.skills { background: var(--ink); }
+
+.skill-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 28px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.skill-card {
+    height: 190px;
+    perspective: 1000px;
+    transition: transform 0.35s ease;
+}
+
+.skill-card:hover { transform: translateY(-8px); }
+
+.skill-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.skill-card:hover .skill-card-inner { transform: rotateY(180deg); }
+
+.skill-face {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    backface-visibility: hidden;
+    padding: 20px;
+}
+
+.skill-face--front {
+    background: var(--panel);
+    border: 1px solid var(--hairline);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+}
+
+.skill-card:hover .skill-face--front { border-color: var(--gold); }
+
+.skill-face--back {
+    background: linear-gradient(155deg, var(--wine), var(--ink-2) 70%);
+    border: 1px solid var(--gold);
+    transform: rotateY(180deg);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+}
+
+.skill-face span {
+    display: block;
+    margin-top: 18px;
+    font-family: var(--engraved);
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ivory);
+}
+
+.skill-face--back .back-title {
+    margin-top: 0;
+    font-size: 1rem;
+    color: var(--gold-light);
+    letter-spacing: 0.2em;
+}
+
+.skill-face--back p {
+    margin-top: 12px;
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: var(--mist);
+    line-height: 1.5;
+}
+
+.skill-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid var(--hairline);
+}
+
+.skill-icon img { width: 100%; height: 100%; object-fit: cover; }
+
+@media (prefers-reduced-motion: reduce) {
+    .skill-card-inner, .skill-card:hover .skill-card-inner { transition: none; transform: none; }
+    .skill-face--back { display: none; }
+}
+
+/* ============================================================
+   PROJECTS
+   ============================================================ */
+.projects { background: var(--panel); border-top: 1px solid var(--hairline); }
+
+.project-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 36px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.project-container { perspective: 1400px; }
+
+.project-card {
+    --rx: 0deg;
+    --ry: 0deg;
+    background: var(--ink-2);
+    border: 1px solid var(--hairline);
+    border-radius: 4px;
+    overflow: hidden;
+    transform: translateY(0) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    transform-style: preserve-3d;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s, box-shadow 0.35s;
+}
+
+.project-card:hover {
+    transform: translateY(-10px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    border-color: var(--gold);
+    box-shadow: var(--shadow);
+}
+
+.project-img { height: 210px; overflow: hidden; position: relative; }
+
+.project-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.6s ease;
+}
+
+.project-card:hover .project-img img { transform: scale(1.08); }
+
+/* Glare sweep tracks the cursor via --mx/--my, set by JS */
+.glare {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle 180px at var(--mx, 50%) var(--my, 50%), rgba(236, 212, 140, 0.28), transparent 65%);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+}
+
+.project-card:hover .glare { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+    .project-card { transition: none; }
+}
+
+.project-body { padding: 26px 24px 30px; }
+
+.project-body h3 {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 8px;
+}
+
+.project-body p {
+    color: var(--mist);
+    font-weight: 300;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+.project-body a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-family: var(--engraved);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ivory);
+    border-bottom: 1px solid var(--hairline);
+    padding-bottom: 4px;
+    transition: 0.3s;
+}
+
+.project-body a i { font-size: 0.7rem; transition: 0.3s; }
+
+.project-body a:hover {
+    color: var(--gold-light);
+    border-color: var(--gold);
+}
+
+.project-body a:hover i { transform: translateX(4px); }
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact { background: var(--ink); }
+
+.contact-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.contact-box {
+    background: var(--panel);
+    border: 1px solid var(--hairline);
+    padding: 46px 25px;
+    text-align: center;
+    border-radius: 4px;
+    transition: 0.35s ease;
+}
+
+.contact-box:hover {
+    transform: translateY(-8px);
+    border-color: var(--gold);
+}
+
+.contact-box i {
+    font-size: 1.7rem;
+    color: var(--gold);
+    margin-bottom: 18px;
+}
+
+.contact-box h3 {
+    font-family: var(--engraved);
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ivory);
+    margin-bottom: 10px;
+}
+
+.contact-box p { color: var(--mist); font-weight: 300; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+    background: var(--ink-2);
+    color: var(--mist);
+    text-align: center;
+    padding: 40px 25px;
+    font-size: 0.85rem;
+    border-top: 1px solid var(--hairline);
+}
+
+footer .logo-badge { margin: 0 auto 14px; }
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.hidden {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.9s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hidden, .show { transition: none; opacity: 1; transform: none; }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 992px) {
+    .hero, .about {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 130px;
+    }
+
+    .hero-text { max-width: 100%; }
+    .hero-text h1 { font-size: 4.2rem; }
+
+    .description { margin-left: auto; margin-right: auto; }
+
+    .buttons, .social-icons { justify-content: center; }
+
+    .frame { width: 300px; height: 300px; }
+    .about-image .frame { width: 280px; height: 280px; }
+
+    .eyebrow { justify-content: center; }
+    .crown { margin-left: auto; margin-right: auto; }
+    .orbit-ring { inset: -26px; }
+    .orbit-ring--2 { inset: -44px; }
+}
+
+@media (max-width: 480px) {
+    .skill-card { height: 210px; }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: min(78%, 320px);
+        background: rgba(10, 12, 22, 0.98);
+        backdrop-filter: blur(14px);
+        border-left: 1px solid var(--hairline);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        transform: translateX(100%);
+        transition: 0.4s ease;
+    }
+
+    .nav-links.open { transform: translateX(0); }
+
+    .nav-toggle { display: flex; }
+
+    .hero-text h1 { font-size: 3.2rem; }
+    .hero-role { font-size: 1.3rem; }
+
+    section { padding: 90px 6%; }
+    section h2 { font-size: 2.1rem; }
+}

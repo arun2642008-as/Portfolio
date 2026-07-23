@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arun — Portfolio</title>
+
+    <!-- Fonts: Cinzel for engraved/royal display, Cormorant Garamond for elegant headings, Jost for clean body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Ornamental noise/pattern layer -->
+    <div class="grain"></div>
+
+    <!-- Header -->
+    <header id="siteHeader">
+        <nav class="navbar">
+            <a href="#home" class="logo">
+                <span class="logo-badge">A</span>
+                <span class="logo-word">Arun</span>
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-glow"></div>
+        <div class="particles" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+
+        <div class="hero-text hidden">
+            <svg class="crown" viewBox="0 0 100 60" aria-hidden="true">
+                <path d="M8 50 L14 20 L30 36 L50 12 L70 36 L86 20 L92 50 Z" fill="none" stroke="url(#crownGold)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+                <line x1="8" y1="50" x2="92" y2="50" stroke="url(#crownGold)" stroke-width="2.4" stroke-linecap="round"/>
+                <circle cx="14" cy="20" r="3.2" fill="url(#crownGold)"/>
+                <circle cx="50" cy="12" r="3.6" fill="url(#crownGold)"/>
+                <circle cx="86" cy="20" r="3.2" fill="url(#crownGold)"/>
+                <circle cx="50" cy="38" r="4" fill="none" stroke="url(#crownGold)" stroke-width="1.6"/>
+                <defs>
+                    <linearGradient id="crownGold" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0" stop-color="#ecd48c"/>
+                        <stop offset="1" stop-color="#c9a24b"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+
+            <p class="eyebrow"><span class="line"></span>Portfolio&nbsp;&nbsp;·&nbsp;&nbsp;Est. 2026</p>
+            <h1>Arun</h1>
+            <h2 class="hero-role">Web Developer <span class="dot">&amp;</span> AI Student</h2>
+            <p class="description">
+                I craft refined, responsive digital experiences — merging clean
+                engineering with a considered eye for detail, built in
+                HTML, CSS and JavaScript.
+            </p>
+
+            <div class="buttons">
+                <a href="#" class="btn primary">Download CV</a>
+                <a href="#contact" class="btn secondary">Contact Me</a>
+            </div>
+
+            <div class="social-icons">
+                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+
+        <div class="hero-image hidden">
+            <div class="tilt-wrap" id="heroTilt">
+                <div class="orbit-ring orbit-ring--1"></div>
+                <div class="orbit-ring orbit-ring--2"></div>
+                <div class="frame">
+                    <span class="corner corner--tl"></span>
+                    <span class="corner corner--tr"></span>
+                    <span class="corner corner--bl"></span>
+                    <span class="corner corner--br"></span>
+                    <img src="images/hero-photo.jpg" alt="Portrait">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="about">
+        <div class="about-image hidden">
+            <div class="frame frame--sq tilt-sm" id="aboutTilt">
+                <span class="corner corner--tl"></span>
+                <span class="corner corner--tr"></span>
+                <span class="corner corner--bl"></span>
+                <span class="corner corner--br"></span>
+                <img src="images/about-art.svg" alt="An illustrated workspace: laptop, code, coffee">
+            </div>
+        </div>
+        <div class="about-text hidden">
+            <p class="eyebrow"><span class="line"></span>About</p>
+            <h2>The Craft Behind the Code</h2>
+            <p>
+                I'm Arun, a web developer and Artificial Intelligence student with a
+                quiet obsession for detail. I build interfaces that feel considered
+                — responsive, purposeful and pleasant to use — while exploring how
+                intelligent systems can make the web more capable.
+            </p>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="skills">
+        <p class="eyebrow center"><span class="line"></span>Capabilities<span class="line"></span></p>
+        <span class="gem" aria-hidden="true"></span>
+        <h2>My Skills</h2>
+        <div class="skill-container">
+            <div class="skill-card hidden">
+                <div class="skill-card-inner">
+                    <div class="skill-face skill-face--front">
+                        <div class="skill-icon"><img src="images/html.svg" alt="HTML"></div>
+                        <span>HTML</span>
+                    </div>
+                    <div class="skill-face skill-face--back">
+                        <span class="back-title">HTML</span>
+                        <p>Semantic structure, built to last</p>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-card hidden">
+                <div class="skill-card-inner">
+                    <div class="skill-face skill-face--front">
+                        <div class="skill-icon"><img src="images/css.svg" alt="CSS"></div>
+                        <span>CSS</span>
+                    </div>
+                    <div class="skill-face skill-face--back">
+                        <span class="back-title">CSS</span>
+                        <p>Layout &amp; polish with a considered eye</p>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-card hidden">
+                <div class="skill-card-inner">
+                    <div class="skill-face skill-face--front">
+                        <div class="skill-icon"><img src="images/js.svg" alt="JavaScript"></div>
+                        <span>JavaScript</span>
+                    </div>
+                    <div class="skill-face skill-face--back">
+                        <span class="back-title">JS</span>
+                        <p>Interactivity that feels alive</p>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-card hidden">
+                <div class="skill-card-inner">
+                    <div class="skill-face skill-face--front">
+                        <div class="skill-icon"><img src="images/python.svg" alt="Python"></div>
+                        <span>Python</span>
+                    </div>
+                    <div class="skill-face skill-face--back">
+                        <span class="back-title">PY</span>
+                        <p>Data, logic &amp; a touch of AI</p>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-card hidden">
+                <div class="skill-card-inner">
+                    <div class="skill-face skill-face--front">
+                        <div class="skill-icon"><img src="images/sql.svg" alt="SQL"></div>
+                        <span>SQL</span>
+                    </div>
+                    <div class="skill-face skill-face--back">
+                        <span class="back-title">SQL</span>
+                        <p>Structured, queryable, dependable</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="projects">
+        <p class="eyebrow center"><span class="line"></span>Selected Work<span class="line"></span></p>
+        <span class="gem" aria-hidden="true"></span>
+        <h2>My Projects</h2>
+
+        <div class="project-container">
+            <div class="project-card hidden tilt-card">
+                <div class="project-img"><img src="images/1stpro.png" alt="Event Site"><span class="glare"></span></div>
+                <div class="project-body">
+                    <h3>Event Site</h3>
+                    <p>Used to see upcoming events.</p>
+                    <a href="images/total/1st project.html">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="project-card hidden tilt-card">
+                <div class="project-img"><img src="images/2nd pro.jpeg" alt="Education Site"><span class="glare"></span></div>
+                <div class="project-body">
+                    <h3>Education Site</h3>
+                    <p>Used to learn full-stack development and to register for a course.</p>
+                    <a href="images/total/1page.html">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="project-card hidden tilt-card">
+                <div class="project-img"><img src="images/3rdpro.png" alt="Purchase Site"><span class="glare"></span></div>
+                <div class="project-body">
+                    <h3>Purchase Site</h3>
+                    <p>Used to buy perfumes.</p>
+                    <a href="images/total/perfume.html">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="project-card hidden tilt-card">
+                <div class="project-img"><img src="images/4thpro.png" alt="Food Site"><span class="glare"></span></div>
+                <div class="project-body">
+                    <h3>Food Site</h3>
+                    <p>Used to order food.</p>
+                    <a href="images/total/food.html">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="project-card hidden tilt-card">
+                <div class="project-img"><img src="images/5thpro.png" alt="Coffee Site"><span class="glare"></span></div>
+                <div class="project-body">
+                    <h3>Coffee Site</h3>
+                    <p>Used to order coffee.</p>
+                    <a href="images/total/coffee.html">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="project-card hidden tilt-card">
+                <div class="project-img"><img src="images/6thpro.png" alt="Travel Site"><span class="glare"></span></div>
+                <div class="project-body">
+                    <h3>Travel Site</h3>
+                    <p>Used to plan and book travel.</p>
+                    <a href="images/total/travel.html">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <p class="eyebrow center"><span class="line"></span>Get In Touch<span class="line"></span></p>
+        <span class="gem" aria-hidden="true"></span>
+        <h2>Contact Me</h2>
+
+        <div class="contact-container">
+            <div class="contact-box hidden">
+                <i class="fas fa-envelope"></i>
+                <h3>Email</h3>
+                <p>arun2642008@gmail.com</p>
+            </div>
+
+            <div class="contact-box hidden">
+                <i class="fas fa-phone"></i>
+                <h3>Phone</h3>
+                <p>+91 7904623404</p>
+            </div>
+
+            <div class="contact-box hidden">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Location</h3>
+                <p>Tenkasi, Tamil Nadu</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <span class="logo-badge small">A</span>
+        <p>© 2026 Arun. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+.header{
+    background-color: black;
+    color: white;
+    text-align: center;
+    
+}
+.e{
+    color: gray;
+    cursor: pointer;
+}
+.e:hover{
+    color: white;
+}
+.box{
+    display: inline-block;
+    width: 300px;
+    border-width: 3px;
+    border-color: black;
+    border-style: solid;
+    padding: 10px;
+    margin-left: 40px;
+
+}
+h2{
+    background-color: black;
+    color:white;
+    text-align: center;
+    display: inline;
+    margin-left: 35%;
+}
+.contact{
+    text-align: center;
+    background-color: black;
+    color: white;
+}
+.a{
+    text-align: center;
+    background-color: yellow;
+    color: black;
+    display: inline-block;
+    width: 600px;
+    height: 35px;
+    margin-bottom: 50px;
+}
